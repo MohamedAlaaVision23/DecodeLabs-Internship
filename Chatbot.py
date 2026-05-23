@@ -3,6 +3,7 @@ import random
 
 print("=== DecodeBot ===")
 print("Type 'bye' to exit.\n")
+user_name = ""
 responses = {
     "hi": ["Hello!", "Hi there!", "Hey!"],
     "hello": ["Hello!", "Nice to meet you!"],
@@ -66,8 +67,20 @@ responses = {
 while True:
     user = input("You: ").lower().strip()
 
+    # Save name in memory
+    if "my name is" in user:
+        user_name = user.replace("my name is", "").strip()
+        print(f"Bot: Nice to meet you {user_name.title()}!")
+
+    # Recall name
+    elif user == "what is my name":
+        if user_name:
+            print(f"Bot: Your name is {user_name.title()}")
+        else:
+            print("Bot: I don't know your name yet.")
+
     # Time
-    if user == "time":
+    elif user == "time":
         print("Bot:", datetime.now().strftime("%H:%M:%S"))
 
     # Date
